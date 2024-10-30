@@ -17,3 +17,18 @@ $family-primary: Geometry Soft Pro Bold N, sans-serif;
 }
 
 @import '../../../node_modules/bulma/bulma.sass';
+
+.button-container {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin: 1rem 0;
+  width: 100%;
+}
+
+.button {
+  &.is-large {
+    min-width: 120px;
+    margin: 0 0.5rem;
+  }
+}
