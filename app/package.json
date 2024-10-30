@@ -4,9 +4,9 @@
 	"private": true,
 	"scripts": {
 		"serve": "bun run vue-cli-service serve",
-		"build": "bun run css-build && bun run vue-cli-service build",
+		"build": "npm run css-build && vue-cli-service build",
 		"lint": "bun run vue-cli-service lint",
-		"css-build": "bun run sass --no-source-map ./src/assets/sass/styles.scss:./public/css/styles.css",
+		"css-build": "sass --no-source-map ./src/assets/sass/styles.scss:./public/css/styles.css",
 		"css-watch": "bun run css-build -- --watch",
 		"start": "bun run css-watch"
 	},
