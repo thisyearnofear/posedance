@@ -410,23 +410,43 @@
 <script>
 export default {
   name: 'SelectVideo',
+  data() {
+    return {
+      scriptLoaded: false
+    }
+  },
   mounted() {
     this.loadTikTokScript();
   },
   methods: {
     loadTikTokScript() {
-      if (!document.querySelector('script[src*="tiktok.com/embed.js"]')) {
+      // Check if script is already loaded
+      if (this.scriptLoaded) {
+        this.reloadTikTokEmbeds();
+        return;
+      }
+
+      const existingScript = document.getElementById('tiktok-script');
+      if (!existingScript) {
         const script = document.createElement('script');
+        script.id = 'tiktok-script';
         script.src = 'https://www.tiktok.com/embed.js';
-        script.defer = true;
-        script.crossOrigin = 'anonymous';
+        script.async = true;
+        
         script.onload = () => {
-          if (window.tiktok) {
-            window.tiktok.reload();
-          }
+          this.scriptLoaded = true;
+          this.reloadTikTokEmbeds();
         };
-        document.head.appendChild(script);
-      } else if (window.tiktok) {
+
+        script.onerror = (error) => {
+          console.error('Failed to load TikTok embed script:', error);
+        };
+
+        document.body.appendChild(script);
+      }
+    },
+    reloadTikTokEmbeds() {
+      if (window.tiktok) {
         window.tiktok.reload();
       }
     }
@@ -434,7 +454,7 @@ export default {
   watch: {
     $route() {
       this.$nextTick(() => {
-        this.loadTikTokScript();
+        this.reloadTikTokEmbeds();
       });
     }
   }

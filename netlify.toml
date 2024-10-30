@@ -38,4 +38,5 @@
     X-XSS-Protection = "1; mode=block"
     X-Content-Type-Options = "nosniff"
     Referrer-Policy = "strict-origin-when-cross-origin"
-    Permissions-Policy = "camera=(), microphone=(), geolocation=()"
+    Permissions-Policy = "camera=self, microphone=(), geolocation=()"
+    Access-Control-Allow-Origin = "https://*.tiktok.com"
