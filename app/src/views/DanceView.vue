@@ -394,16 +394,37 @@ export default {
       });
     },
     stopWebcam() {
-      // Store the current path
-      const currentPath = window.location.pathname;
-      
-      // Redirect to blank page first
-      window.location.href = '/blank';
-      
-      // Then redirect back after a brief delay
-      setTimeout(() => {
-        window.location.href = currentPath;
-      }, 100);
+      // Stop video2 stream
+      if (this.video2 && this.video2.srcObject) {
+        this.video2.srcObject.getTracks().forEach(track => track.stop());
+        this.video2.srcObject = null;
+      }
+
+      // Clear canvases
+      if (this.ctx) {
+        this.ctx.clearRect(0, 0, VIDEO_WIDTH, VIDEO_HEIGHT);
+      }
+      if (this.ctx2) {
+        this.ctx2.clearRect(0, 0, VIDEO_WIDTH, VIDEO_HEIGHT);
+      }
+
+      // Reset keypoints and score
+      this.webcamKeypoints = [];
+      this.videoKeypoints = [];
+      this.score = null;
+
+      // Reset messages and flags
+      this.preview = false;
+      this.videoLoaded = false;
+      this.videoPlaying = false;
+
+      // Cancel animation frame
+      if (this.poseDetectionFrame) {
+        cancelAnimationFrame(this.poseDetectionFrame);
+      }
+
+      // Optionally, reload the page or reset component state
+      // window.location.reload(); // Use with caution
     }
   },
   beforeDestroy() {
