@@ -424,20 +424,23 @@ export default {
       script.src = 'https://www.tiktok.com/embed.js';
       script.defer = true;
       script.crossOrigin = 'anonymous';
+      script.integrity = ''; // Remove integrity check
+      
+      // Add CORS headers
+      script.setAttribute('referrerpolicy', 'origin');
       
       script.onload = () => {
-        // Force widget reload after script loads
         if (window.tiktok) {
           window.tiktok.reload();
         } else if (retryCount < 3) {
-          // Retry up to 3 times with increasing delay
           setTimeout(() => {
             this.loadTikTokScript(retryCount + 1);
           }, 1000 * (retryCount + 1));
         }
       };
 
-      script.onerror = () => {
+      script.onerror = (error) => {
+        console.error('TikTok script load error:', error);
         if (retryCount < 3) {
           setTimeout(() => {
             this.loadTikTokScript(retryCount + 1);
@@ -445,7 +448,7 @@ export default {
         }
       };
 
-      document.body.appendChild(script);
+      document.head.appendChild(script); // Append to head instead of body
     }
   },
   watch: {
