@@ -1,7 +1,11 @@
 module.exports = {
-  publicPath: "./",
+  publicPath: "",
   configureWebpack: {
     devtool: "source-map",
+    output: {
+      filename: "[name].[hash].js",
+      chunkFilename: "[name].[hash].js",
+    },
   },
   devServer: {
     proxy: {
