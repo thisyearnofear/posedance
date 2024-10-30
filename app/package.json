@@ -1,10 +1,10 @@
 {
-	"name": "posedance",
+	"name": "dancoor",
 	"version": "0.1.0",
 	"private": true,
 	"scripts": {
 		"serve": "bun run vue-cli-service serve",
-		"build": "npm run css-build && vue-cli-service build",
+		"build": "npm run css-build && vue-cli-service build && cp public/_redirects dist/",
 		"lint": "bun run vue-cli-service lint",
 		"css-build": "sass --no-source-map ./src/assets/sass/styles.scss:./public/css/styles.css",
 		"css-watch": "bun run css-build -- --watch",

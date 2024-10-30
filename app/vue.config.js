@@ -1,5 +1,5 @@
 module.exports = {
-  publicPath: "/",
+  publicPath: "",
   configureWebpack: {
     devtool: "source-map",
     output: {
@@ -13,19 +13,14 @@ module.exports = {
     },
   },
   css: {
+    loaderOptions: {
+      sass: {
+        additionalData: `@import "@/assets/sass/styles.scss";`,
+      },
+    },
     extract: {
       filename: "css/[name].[contenthash].css",
       chunkFilename: "css/[name].[contenthash].css",
     },
-  },
-  chainWebpack: (config) => {
-    config.plugin("html").tap((args) => {
-      args[0].minify = {
-        removeComments: true,
-        collapseWhitespace: true,
-        removeAttributeQuotes: false,
-      };
-      return args;
-    });
   },
 };
