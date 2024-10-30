@@ -1,0 +1,9 @@
+   [build]
+     publish = "app/dist"  # Adjust this path if your build output is in a different location
+     command = "bun run build"
+
+   [[redirects]]
+     from = "/*"
+     to = "/index.html"
+     status = 200
+     force = true
