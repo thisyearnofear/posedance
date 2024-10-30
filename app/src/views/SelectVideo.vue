@@ -414,41 +414,21 @@ export default {
     this.loadTikTokScript();
   },
   methods: {
-    loadTikTokScript(retryCount = 0) {
-      // Remove any existing TikTok scripts
-      const existingScripts = document.querySelectorAll('script[src*="tiktok.com/embed.js"]');
-      existingScripts.forEach(script => script.remove());
-
-      // Create and append new script
-      const script = document.createElement('script');
-      script.src = 'https://www.tiktok.com/embed.js';
-      script.defer = true;
-      script.crossOrigin = 'anonymous';
-      script.integrity = ''; // Remove integrity check
-      
-      // Add CORS headers
-      script.setAttribute('referrerpolicy', 'origin');
-      
-      script.onload = () => {
-        if (window.tiktok) {
-          window.tiktok.reload();
-        } else if (retryCount < 3) {
-          setTimeout(() => {
-            this.loadTikTokScript(retryCount + 1);
-          }, 1000 * (retryCount + 1));
-        }
-      };
-
-      script.onerror = (error) => {
-        console.error('TikTok script load error:', error);
-        if (retryCount < 3) {
-          setTimeout(() => {
-            this.loadTikTokScript(retryCount + 1);
-          }, 1000 * (retryCount + 1));
-        }
-      };
-
-      document.head.appendChild(script); // Append to head instead of body
+    loadTikTokScript() {
+      if (!document.querySelector('script[src*="tiktok.com/embed.js"]')) {
+        const script = document.createElement('script');
+        script.src = 'https://www.tiktok.com/embed.js';
+        script.defer = true;
+        script.crossOrigin = 'anonymous';
+        script.onload = () => {
+          if (window.tiktok) {
+            window.tiktok.reload();
+          }
+        };
+        document.head.appendChild(script);
+      } else if (window.tiktok) {
+        window.tiktok.reload();
+      }
     }
   },
   watch: {
