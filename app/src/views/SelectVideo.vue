@@ -406,3 +406,21 @@
   margin-bottom: 60px;
 }
 </style>
+
+<script>
+export default {
+  name: 'SelectVideo',
+  mounted() {
+    // Force TikTok to re-run its embed script
+    if (window.tiktok && window.tiktok.reload) {
+      window.tiktok.reload();
+    } else {
+      // Fallback if TikTok's native reload isn't available
+      const tk = document.createElement('script');
+      tk.src = 'https://www.tiktok.com/embed.js';
+      tk.async = false;
+      document.body.appendChild(tk);
+    }
+  }
+};
+</script>
