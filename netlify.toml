@@ -1,6 +1,6 @@
    [build]
      publish = "app/dist"  # Adjust this path if your build output is in a different location
-     command = "bun run build"
+     command = "cd app && bun run build"  # Change to the app directory before running the build
 
    [[redirects]]
      from = "/*"
