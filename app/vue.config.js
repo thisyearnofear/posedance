@@ -15,7 +15,15 @@ module.exports = {
   css: {
     loaderOptions: {
       sass: {
-        additionalData: `@import "@/assets/sass/styles.scss";`,
+        additionalData: `
+          $primary: #f9e54e;
+          $base: #fbfef9;
+          $info: #3ca8d6;
+          $warning: #ff8646;
+          $link: #ad8dcd;
+          $dark: #191923;
+          $family-primary: Geometry Soft Pro Bold N, sans-serif;
+        `,
       },
     },
     extract: {
