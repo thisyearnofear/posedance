@@ -411,15 +411,48 @@
 export default {
   name: 'SelectVideo',
   mounted() {
-    // Force TikTok to re-run its embed script
-    if (window.tiktok && window.tiktok.reload) {
-      window.tiktok.reload();
-    } else {
-      // Fallback if TikTok's native reload isn't available
-      const tk = document.createElement('script');
-      tk.src = 'https://www.tiktok.com/embed.js';
-      tk.async = false;
-      document.body.appendChild(tk);
+    this.loadTikTokScript();
+  },
+  methods: {
+    loadTikTokScript(retryCount = 0) {
+      // Remove any existing TikTok scripts
+      const existingScripts = document.querySelectorAll('script[src*="tiktok.com/embed.js"]');
+      existingScripts.forEach(script => script.remove());
+
+      // Create and append new script
+      const script = document.createElement('script');
+      script.src = 'https://www.tiktok.com/embed.js';
+      script.defer = true;
+      script.crossOrigin = 'anonymous';
+      
+      script.onload = () => {
+        // Force widget reload after script loads
+        if (window.tiktok) {
+          window.tiktok.reload();
+        } else if (retryCount < 3) {
+          // Retry up to 3 times with increasing delay
+          setTimeout(() => {
+            this.loadTikTokScript(retryCount + 1);
+          }, 1000 * (retryCount + 1));
+        }
+      };
+
+      script.onerror = () => {
+        if (retryCount < 3) {
+          setTimeout(() => {
+            this.loadTikTokScript(retryCount + 1);
+          }, 1000 * (retryCount + 1));
+        }
+      };
+
+      document.body.appendChild(script);
+    }
+  },
+  watch: {
+    $route() {
+      this.$nextTick(() => {
+        this.loadTikTokScript();
+      });
     }
   }
 };

@@ -4,9 +4,18 @@
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="frame-src 'self' *.tiktok.com;"
+    />
+    <meta http-equiv="Permissions-Policy" content="autoplay=*" />
     <link rel="icon" href="favicon.ico" />
     <title><%= htmlWebpackPlugin.options.title %></title>
-    <script src="https://www.tiktok.com/embed.js"></script>
+    <script
+      defer
+      crossorigin="anonymous"
+      src="https://www.tiktok.com/embed.js"
+    ></script>
   </head>
   <body>
     <noscript>
