@@ -1,9 +1,9 @@
-   [build]
-     publish = "app/dist"
-     command = "cd app && npx npm run build"
+[build]
+  publish = "app/dist"
+  command = "cd app && npm install && npx sass --no-source-map ./src/assets/sass/styles.scss:./public/css/styles.css && npx vue-cli-service build"
 
-   [[redirects]]
-     from = "/*"
-     to = "/index.html"
-     status = 200
-     force = true
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+  force = true
