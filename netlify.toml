@@ -1,6 +1,6 @@
 [build]
   publish = "app/dist"
-  command = "cd app && npm install && npx sass --no-source-map ./src/assets/sass/styles.scss:./public/css/styles.css && npx vue-cli-service build"
+  command = "cd app && npm install --legacy-peer-deps && npx sass --no-source-map ./src/assets/sass/styles.scss:./public/css/styles.css && npx vue-cli-service build"
 
 [[redirects]]
   from = "/*"
