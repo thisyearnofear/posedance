@@ -1,5 +1,31 @@
 {
   "name": "contracts",
-  "version": "0.0.0",
-  "private": true
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "clean": "rimraf dist cache typechain",
+    "build": "hardhat compile",
+    "test": "hardhat test",
+    "typechain": "typechain --target ethers-v5 --out-dir typechain --show-stack-traces",
+    "deploy": "hardhat run scripts/deploy.ts --network mumbai"
+  },
+  "dependencies": {
+    "@openzeppelin/contracts": "^5.0.0"
+  },
+  "devDependencies": {
+    "@nomicfoundation/hardhat-toolbox": "^3.0.0",
+    "@typechain/ethers-v5": "^10.2.0",
+    "@typechain/hardhat": "^6.1.2",
+    "@types/chai": "^4.3.4",
+    "@types/mocha": "^10.0.1",
+    "@types/node": "^20.5.0",
+    "chai": "^4.3.7",
+    "dotenv": "^16.3.1",
+    "ethers": "^6.7.0",
+    "hardhat": "^2.18.0",
+    "rimraf": "^5.0.1",
+    "ts-node": "^10.9.1",
+    "typechain": "^8.1.0",
+    "typescript": "^5.2.2"
+  }
 }

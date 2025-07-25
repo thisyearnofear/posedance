@@ -6,6 +6,21 @@
 > - `packages/frontend`: Web UI and client logic
 > - `packages/functions`: Off-chain AI scoring and backend services
 
+## Contracts Workspace
+
+PoseDance contracts are managed in `packages/contracts` using Hardhat + TypeScript + Typechain for a fully typed workflow.
+
+**Usage:**
+```bash
+cd packages/contracts
+pnpm install
+pnpm build        # Compile contracts, generate types
+pnpm test         # Run contract tests
+pnpm deploy       # Deploy to Polygon Mumbai (set .env vars)
+```
+
+Artifacts and deployed addresses/ABIs are saved in `deployments/mumbai.json`.
+
 _Legacy code and documentation below may be outdated. See the /packages folders for current development._
 
 ## Welcome to PoseDance!
