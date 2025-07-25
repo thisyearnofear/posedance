@@ -1,8 +1,51 @@
-# PoseDance - Perfect your Dance Moves with a friendly TikTok Trainer!
+# PoseDance Monorepo
+
+> **NOTE:** The project is now rebooted as a modern monorepo using [pnpm workspaces](https://pnpm.io/workspaces).
+> All active code is organized under the `/packages` structure:
+> - `packages/contracts`: Smart contracts and onchain logic
+> - `packages/frontend`: Web UI and client logic
+> - `packages/functions`: Off-chain AI scoring and backend services
+
+## Quick Start
+
+### Contracts (Hardhat)
+
+```bash
+cd packages/contracts
+pnpm install
+pnpm build        # Compile contracts, generate types
+pnpm deploy       # Deploy to Polygon Mumbai (set .env vars)
+```
+
+Artifacts and deployed addresses/ABIs are saved in `deployments/mumbai.json`.
+
+### Backend Functions (Netlify, AI Scoring)
+
+```bash
+cd packages/functions
+pnpm install
+pnpm build        # Build with tsup
+pnpm dev          # Run with netlify dev (requires netlify-cli)
+```
+
+Edit `.env` as needed. Functions build to `dist/` and are auto-routed by Netlify.
+
+### Frontend (Vite + Vue 3)
+
+```bash
+cd packages/frontend
+pnpm install
+pnpm dev          # Start local dev server
+pnpm build        # Build for production
+```
+
+Edit `.env` with your function URL and contract addresses.
+
+Netlify will deploy the frontend from `packages/frontend/dist` and route functions from `packages/functions/dist`.
+
+_Legacy code and documentation below may be outdated. See the /packages folders for current development._
 
 ## Welcome to PoseDance!
-
-![screenshot](screenshot.png)
 
 PoseDance is your friendly TikTok trainer. It uses embedded videos downloaded from TikTok with PoseNet running on top, enabling the drawing of a 'skeleton' as each frame of a video is analyzed. Match your webcam's output to the video and get a high score!
 
