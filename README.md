@@ -6,20 +6,42 @@
 > - `packages/frontend`: Web UI and client logic
 > - `packages/functions`: Off-chain AI scoring and backend services
 
-## Contracts Workspace
+## Quick Start
 
-PoseDance contracts are managed in `packages/contracts` using Hardhat + TypeScript + Typechain for a fully typed workflow.
+### Contracts (Hardhat)
 
-**Usage:**
 ```bash
 cd packages/contracts
 pnpm install
 pnpm build        # Compile contracts, generate types
-pnpm test         # Run contract tests
 pnpm deploy       # Deploy to Polygon Mumbai (set .env vars)
 ```
 
 Artifacts and deployed addresses/ABIs are saved in `deployments/mumbai.json`.
+
+### Backend Functions (Netlify, AI Scoring)
+
+```bash
+cd packages/functions
+pnpm install
+pnpm build        # Build with tsup
+pnpm dev          # Run with netlify dev (requires netlify-cli)
+```
+
+Edit `.env` as needed. Functions build to `dist/` and are auto-routed by Netlify.
+
+### Frontend (Vite + Vue 3)
+
+```bash
+cd packages/frontend
+pnpm install
+pnpm dev          # Start local dev server
+pnpm build        # Build for production
+```
+
+Edit `.env` with your function URL and contract addresses.
+
+Netlify will deploy the frontend from `packages/frontend/dist` and route functions from `packages/functions/dist`.
 
 _Legacy code and documentation below may be outdated. See the /packages folders for current development._
 

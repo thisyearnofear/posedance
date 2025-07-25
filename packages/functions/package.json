@@ -1,5 +1,23 @@
 {
   "name": "functions",
-  "version": "0.0.0",
-  "private": true
+  "version": "0.1.0",
+  "private": true,
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsup src/**/*.ts --format esm,cjs --dts --out-dir dist",
+    "dev": "netlify dev",
+    "clean": "rimraf dist"
+  },
+  "dependencies": {
+    "@tensorflow-models/posedetection": "^2.1.1",
+    "@tensorflow/tfjs-node": "^4.10.0",
+    "fast-json-stable-stringify": "^2.1.0"
+  },
+  "devDependencies": {
+    "@types/aws-lambda": "^8.10.119",
+    "netlify-cli": "^13.4.0",
+    "rimraf": "^5.0.1",
+    "tsup": "^7.2.0",
+    "typescript": "^5.2.2"
+  }
 }
