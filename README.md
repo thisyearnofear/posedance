@@ -1,8 +1,14 @@
-# PoseDance - Perfect your Dance Moves with a friendly TikTok Trainer!
+# PoseDance Monorepo
+
+> **NOTE:** The project is now rebooted as a modern monorepo using [pnpm workspaces](https://pnpm.io/workspaces).
+> All active code is organized under the `/packages` structure:
+> - `packages/contracts`: Smart contracts and onchain logic
+> - `packages/frontend`: Web UI and client logic
+> - `packages/functions`: Off-chain AI scoring and backend services
+
+_Legacy code and documentation below may be outdated. See the /packages folders for current development._
 
 ## Welcome to PoseDance!
-
-![screenshot](screenshot.png)
 
 PoseDance is your friendly TikTok trainer. It uses embedded videos downloaded from TikTok with PoseNet running on top, enabling the drawing of a 'skeleton' as each frame of a video is analyzed. Match your webcam's output to the video and get a high score!
 

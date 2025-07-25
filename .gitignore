@@ -1,25 +1,40 @@
-*.DS_Store
-*.vscode
-*.js.map
-*.ts
-.git*
-
-*local.settings.json
-test
-tsconfig.json
-*node_modules
-
-
-*dist
-
-# local env files
-.env.local
-.env.development
-.env.*.local
-.env
-
-# Log files
+# Node
+node_modules/
 npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
+pnpm-lock.yaml
+yarn.lock
+dist/
+build/
+.env
+.env.*
 
+# pnpm
+.pnpm-debug.log*
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.sublime*
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Output
+*.zip
+*.pptx
+*.png
+
+# Monorepo
+packages/*/node_modules/
+
+# Removed assets
+functions.zip
+screenshot.png
+posedance.pptx
+app/app.zip
+
+# Misc
+coverage/
+.husky/_/
